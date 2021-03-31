@@ -2,6 +2,9 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+// 自动清理构建目录
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = {
   entry: {
@@ -23,7 +26,8 @@ module.exports = {
         test: /.css$/,
         use: [
             MiniCssExtractPlugin.loader,
-            'css-loader'
+            'css-loader',
+            'postcss-loader'
         ]
       },
       {
@@ -31,7 +35,9 @@ module.exports = {
         use: [
             MiniCssExtractPlugin.loader,
             'css-loader',
-            'less-loader'
+            'less-loader',
+            // css 增加前缀
+            'postcss-loader'
         ]
       },
       {
@@ -59,6 +65,9 @@ module.exports = {
     ]
   },
   plugins: [
+    new webpack.ProgressPlugin(),
+    // 自动清理构建目录
+    new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
       filename: '[name]_[contenthash:8].css'
     }),
