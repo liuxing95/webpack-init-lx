@@ -27,7 +27,14 @@ module.exports = {
         use: [
             MiniCssExtractPlugin.loader,
             'css-loader',
-            'postcss-loader'
+            'postcss-loader',
+            {
+              loader: 'px2rem-loader',
+              options: {
+                remUi: 75,
+                remPrecision: 8
+              }
+            }
         ]
       },
       {
@@ -37,7 +44,14 @@ module.exports = {
             'css-loader',
             'less-loader',
             // css 增加前缀
-            'postcss-loader'
+            'postcss-loader',
+            {
+              loader: 'px2rem-loader',
+              options: {
+                remUi: 75,
+                remPrecision: 8
+              }
+            }
         ]
       },
       {
