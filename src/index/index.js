@@ -1,3 +1,5 @@
 import { helloworld } from './helloworld';
+import { common } from  '../../common/index'
 
-document.write(helloworld());
+const result = common()
+document.write(`${helloworld()}-- ${result}`);
