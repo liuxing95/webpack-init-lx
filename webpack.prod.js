@@ -4,6 +4,7 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 // 自动清理构建目录
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const HtmlWebpackExternalsPlugin = require('html-webpack-externals-plugin')
 const webpack = require('webpack');
 
 const glob = require('glob')
@@ -63,6 +64,10 @@ module.exports = {
     filename: '[name].js'
   },
   mode: 'production',
+  externals: {
+    'react': 'React',
+    'react-dom': 'ReactDOM'
+  },
   module: {
     rules: [
       {
@@ -129,6 +134,21 @@ module.exports = {
     new webpack.ProgressPlugin(),
     // 自动清理构建目录
     new CleanWebpackPlugin(),
+    new HtmlWebpackExternalsPlugin({
+      externals: [
+        {
+          module: 'react',
+          entry: 'https://11.url.cn/now/lib/17.0.1/react.min.js',
+          global: 'React',
+        },
+        {
+          module: 'react-don',
+          entry: 'https://11.url.cn/now/lib/17.0.1/react-dom.min.js',
+          global: 'ReactDOM',
+        },
+      ],
+      files: ['search.html']
+    }),
     new MiniCssExtractPlugin({
       filename: '[name]_[contenthash:8].css'
     }),
