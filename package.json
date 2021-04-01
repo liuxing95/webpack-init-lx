@@ -21,6 +21,7 @@
   "homepage": "https://github.com/liuxing95/webpack-init-lx#readme",
   "devDependencies": {
     "@babel/core": "^7.13.14",
+    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
     "@babel/preset-env": "^7.13.12",
     "@babel/preset-react": "^7.13.13",
     "autoprefixer": "^10.2.5",
