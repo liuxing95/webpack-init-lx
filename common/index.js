@@ -1,3 +1,3 @@
 export function common() {
-  return 'common modules'
+  return 'common modules';
 }
