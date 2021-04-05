@@ -1,8 +1,11 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import faker from './images/faker.jpeg';
-import './search.less';
-import { common } from '../../common/index';
+// import React from 'react';
+// import faker from './images/faker.jpeg';
+// import './search.less';
+// import { common } from '../../common/index';
+const React = require('react');
+const faker = require('./images/faker.jpeg');
+require('./search.less');
+const { common } = require('../../common/index');
 
 class Search extends React.Component {
   constructor() {
@@ -35,7 +38,4 @@ class Search extends React.Component {
   }
 }
 
-ReactDOM.render(
-  <Search />,
-  document.getElementById('root'),
-);
+module.exports = <Search />;
