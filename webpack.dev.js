@@ -1,6 +1,7 @@
 const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 
 const glob = require('glob')
 
@@ -100,10 +101,12 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
+    new FriendlyErrorsWebpackPlugin()
   ].concat(htmlWebpackPlugins),
   devServer: {
     contentBase: '/dist',
-    hot: true
+    hot: true,
+    stats: 'errors-only'
   },
-  devtool: 'cheap-source-map'
+  devtool: 'cheap-source-map',
 }

@@ -5,6 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 // 自动清理构建目录
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackExternalsPlugin = require('html-webpack-externals-plugin')
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const webpack = require('webpack');
 
 const glob = require('glob')
@@ -64,6 +65,7 @@ module.exports = {
     filename: '[name].js'
   },
   mode: 'production',
+  stats: 'errors-only',
   externals: {
     'react': 'React',
     'react-dom': 'ReactDOM'
@@ -134,6 +136,7 @@ module.exports = {
     ]
   },
   plugins: [
+    new FriendlyErrorsWebpackPlugin(),
     new webpack.ProgressPlugin(),
     // 自动清理构建目录
     new CleanWebpackPlugin(),
@@ -159,6 +162,15 @@ module.exports = {
       assetNameRegExp: /\.css$/g,
       cssProcessor: require('cssnano')
     }),
+    function() {
+      this.hooks.done.tap('done', (stats) => {
+        if (stats.compilation.errors && stats.compilation.errors.length && process.argv.indexOf('--watch') == -1)
+          {
+              console.log('build error');
+              process.exit(1);
+          }
+      })
+    }
   ].concat(htmlWebpackPlugins),
   optimization: {
     splitChunks: {
