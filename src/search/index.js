@@ -1,7 +1,7 @@
 import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import faker from './images/faker.jpeg';
+import faker from './images/faker.jpg';
 import './search.less';
 import { common } from '../../common/index';
 

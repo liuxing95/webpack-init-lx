@@ -1,9 +1,9 @@
 // import React from 'react';
-// import faker from './images/faker.jpeg';
+// import faker from './images/faker.jpg';
 // import './search.less';
 // import { common } from '../../common/index';
 const React = require('react');
-const faker = require('./images/faker.jpeg');
+const faker = require('./images/faker.jpg');
 require('./search.less');
 const { common } = require('../../common/index');
 
