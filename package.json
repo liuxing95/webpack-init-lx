@@ -65,6 +65,7 @@
     "postcss": "^8.2.9",
     "postcss-loader": "^5.2.0",
     "postcss-preset-env": "^6.7.0",
+    "purgecss-webpack-plugin": "^4.0.3",
     "px2rem-loader": "^0.1.9",
     "raw-loader": "0.5.1",
     "speed-measure-webpack-plugin": "^1.5.0",

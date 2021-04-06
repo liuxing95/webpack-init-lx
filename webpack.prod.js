@@ -10,10 +10,15 @@ const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const HappyPack = require('happypack')
 const TerserPlugin = require("terser-webpack-plugin");
+const PurgeCSSPlugin = require('purgecss-webpack-plugin')
 const webpack = require('webpack');
 
 const glob = require('glob')
 const smp = new SpeedMeasurePlugin();
+
+const PATHS = {
+  src: path.join(__dirname, 'src')
+}
 
 const setMPA = () => {
   const entry = {
@@ -175,6 +180,9 @@ module.exports = {
     }),
     new MiniCssExtractPlugin({
       filename: '[name]_[contenthash:8].css'
+    }),
+    new PurgeCSSPlugin({
+      paths: glob.sync(`${PATHS.src}/**/*`,  { nodir: true }),
     }),
     new OptimizeCSSAssetsPlugin({
       assetNameRegExp: /\.css$/g,
