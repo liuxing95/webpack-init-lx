@@ -6,9 +6,11 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackExternalsPlugin = require('html-webpack-externals-plugin')
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
+const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
 const webpack = require('webpack');
 
 const glob = require('glob')
+const smp = new SpeedMeasurePlugin();
 
 const setMPA = () => {
   const entry = {
@@ -54,6 +56,8 @@ const setMPA = () => {
 
 const { entry, htmlWebpackPlugins } = setMPA()
 
+// webpack 5下面使用 speed-measure-webpack-plugin 会有问题 
+// TODO: issue 地址 https://github.com/stephencookdev/speed-measure-webpack-plugin/issues/167
 module.exports = {
   // entry: {
   //   index: './src/index.js',
