@@ -8,6 +8,7 @@ const HtmlWebpackExternalsPlugin = require('html-webpack-externals-plugin')
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+const HappyPack = require('happypack')
 const webpack = require('webpack');
 
 const glob = require('glob')
@@ -70,7 +71,7 @@ module.exports = {
     filename: '[name].js'
   },
   mode: 'production',
-  stats: 'errors-only',
+  // stats: 'errors-only',
   externals: {
     'react': 'React',
     'react-dom': 'ReactDOM'
@@ -80,8 +81,15 @@ module.exports = {
       {
         test: /.js$/,
         use: [
+          {
+            loader: 'thread-loader',
+            options: {
+              workers: 3
+            }
+          },
+          // 'happypack/loader'
           'babel-loader',
-          'eslint-loader'
+          // 'eslint-loader'
         ]
       },
       {
@@ -141,8 +149,11 @@ module.exports = {
     ]
   },
   plugins: [
-    new BundleAnalyzerPlugin(),
-    new FriendlyErrorsWebpackPlugin(),
+    // new BundleAnalyzerPlugin(),
+    // new HappyPack({
+    //   loaders: [ 'babel-loader' ]
+    // }),
+    // new FriendlyErrorsWebpackPlugin(),
     new webpack.ProgressPlugin(),
     // 自动清理构建目录
     new CleanWebpackPlugin(),
