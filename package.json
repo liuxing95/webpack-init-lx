@@ -71,6 +71,7 @@
     "uglifyjs-webpack-plugin": "^2.2.0",
     "url-loader": "^4.1.1",
     "webpack": "^5.28.0",
+    "webpack-bundle-analyzer": "^4.4.0",
     "webpack-cli": "^4.6.0",
     "webpack-dev-server": "^3.11.2"
   },
@@ -87,6 +88,7 @@
     ]
   },
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   }
