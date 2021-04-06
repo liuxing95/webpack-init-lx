@@ -9,6 +9,7 @@ const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const HappyPack = require('happypack')
+const TerserPlugin = require("terser-webpack-plugin");
 const webpack = require('webpack');
 
 const glob = require('glob')
@@ -190,6 +191,8 @@ module.exports = {
     }
   ].concat(htmlWebpackPlugins),
   optimization: {
+    minimize: true,
+    minimizer: [new TerserPlugin()],
     splitChunks: {
       minSize: 0,
       cacheGroups: {
