@@ -6,12 +6,16 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config webpack.prod.js",
+    "build:lx": "webpack-init-lx --config webpack.prod.js",
     "build:ssr": "webpack --config webpack.ssr.js",
     "watch": "webpack --watch",
     "dev": "webpack serve --config webpack.dev.js --open",
     "precommit": "lint-staged",
     "lint:script": "eslint --fix \"src/**/*.js\"",
     "lint": "yarn lint:script"
+  },
+  "bin": {
+    "webpack-init-lx": "bin/webpack.js"
   },
   "lint-staged": {
     "linters": {
@@ -53,6 +57,7 @@
     "file-loader": "^6.2.0",
     "friendly-errors-webpack-plugin": "^1.7.0",
     "glob": "^7.1.6",
+    "graceful-fs": "^4.2.6",
     "happypack": "^5.0.1",
     "html-webpack-externals-plugin": "^3.8.0",
     "html-webpack-plugin": "^5.3.1",
